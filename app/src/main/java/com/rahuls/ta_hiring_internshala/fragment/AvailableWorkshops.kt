@@ -9,11 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rahuls.ta_hiring_internshala.R
 import com.rahuls.ta_hiring_internshala.adapter.RecyclerViewAdapter
+import com.rahuls.ta_hiring_internshala.room.WorkshopRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class AvailableWorkshops : Fragment() {
 
-
+    private val uiScope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +30,9 @@ class AvailableWorkshops : Fragment() {
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         val recyclerView = itemView.findViewById<RecyclerView>(R.id.recycler_view1)
+        uiScope.launch {
+            WorkshopRepository.getInstance(requireContext())!!.getAppDatabase().workshopDao().deleteAll()
+        }
         recyclerView.apply {
             // set a LinearLayoutManager to handle Android
             // RecyclerView behavior
@@ -34,7 +41,4 @@ class AvailableWorkshops : Fragment() {
             adapter = RecyclerViewAdapter()
         }
     }
-
-
-
 }
