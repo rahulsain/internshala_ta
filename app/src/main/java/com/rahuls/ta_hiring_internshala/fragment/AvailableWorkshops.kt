@@ -31,7 +31,8 @@ class AvailableWorkshops : Fragment() {
         super.onViewCreated(itemView, savedInstanceState)
         val recyclerView = itemView.findViewById<RecyclerView>(R.id.recycler_view1)
         uiScope.launch {
-            WorkshopRepository.getInstance(requireContext())!!.getAppDatabase().workshopDao().deleteAll()
+            WorkshopRepository.getInstance(requireContext())!!.getAppDatabase().workshopDao()
+                .deleteAll()
         }
         recyclerView.apply {
             // set a LinearLayoutManager to handle Android

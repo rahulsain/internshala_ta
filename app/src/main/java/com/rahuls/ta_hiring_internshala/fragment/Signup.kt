@@ -28,7 +28,7 @@ class Signup : Fragment() {
     private var cPassword = ""
 
     override fun onAttach(context: Context) {
-        preferences = context.getSharedPreferences("userFile",Context.MODE_PRIVATE)
+        preferences = context.getSharedPreferences("userFile", Context.MODE_PRIVATE)
         editor = preferences.edit()
         super.onAttach(context)
     }
@@ -46,9 +46,6 @@ class Signup : Fragment() {
         rConfirmPassword = view.findViewById(R.id.rConPass)
         buttonRegister = view.findViewById(R.id.register)
 
-
-
-
         buttonRegister.setOnClickListener {
             val activity = it.context as AppCompatActivity
             val msg: String
@@ -58,11 +55,11 @@ class Signup : Fragment() {
             cPassword = rConfirmPassword.text.toString()
             email = rEmail.text.toString()
 
-            if(username.isEmpty() || email.isEmpty() || password.isEmpty() || cPassword.isEmpty()) {
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty() || cPassword.isEmpty()) {
                 msg = "All fields are required"
-            } else if(password != cPassword){
+            } else if (password != cPassword) {
                 msg = "Password does not match"
-            } else if(password.length < 7){
+            } else if (password.length < 7) {
                 msg = "Password too short"
             } else {
 
@@ -74,14 +71,9 @@ class Signup : Fragment() {
 
                 activity.supportFragmentManager.popBackStack()
             }
-            Toast.makeText(activity,msg, Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
         }
 
         return view
-    }
-
-    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(itemView, savedInstanceState)
-
     }
 }

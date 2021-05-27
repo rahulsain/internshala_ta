@@ -24,11 +24,15 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 
     private val uiScope = CoroutineScope(Dispatchers.IO)
 
-    private val name = arrayOf("Android Dev W1", "Android Dev W2",
-        "Web Dev W1", "Learn Kotlin B1", "Learn DSA")
+    private val name = arrayOf(
+        "Android Dev W1", "Android Dev W2",
+        "Web Dev W1", "Learn Kotlin B1", "Learn DSA"
+    )
 
-    private val date = arrayOf("20:00 18th May, 2021", "04:00 18th May, 2021",
-        "07:00 19th May, 2021", "04:00 20th May, 2021", "10:00 30th May, 2021")
+    private val date = arrayOf(
+        "20:00 18th May, 2021", "04:00 18th May, 2021",
+        "07:00 19th May, 2021", "04:00 20th May, 2021", "10:00 30th May, 2021"
+    )
 
     private val btn = arrayOf(false, false, false, false, false, false)
 
@@ -41,21 +45,21 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
         val prefs = itemView.context.getSharedPreferences("prefs", MODE_PRIVATE)!!
         val preferences = itemView.context.getSharedPreferences("userFile", MODE_PRIVATE)!!
 
-         fun hideButton() {
-             button.text = "Applied"
-             button.isClickable = false
-             button.setBackgroundColor(Color.parseColor("#FF3700E9"))
+        fun hideButton() {
+            button.text = "Applied"
+            button.isClickable = false
+            button.setBackgroundColor(Color.parseColor("#FF3700E9"))
         }
 
         fun storeData(i: Int) {
             uiScope.launch {
-                    val workshop = Workshop()
-                    workshop.name = name[i]
-                    workshop.date = date[i]
-                    workshop.button = prefs.getBoolean("registered$i", false)
-                    WorkshopRepository.getInstance(itemView.context)!!.getAppDatabase().workshopDao()
-                        .insert(workshop)
-                }
+                val workshop = Workshop()
+                workshop.name = name[i]
+                workshop.date = date[i]
+                workshop.button = prefs.getBoolean("registered$i", false)
+                WorkshopRepository.getInstance(itemView.context)!!.getAppDatabase().workshopDao()
+                    .insert(workshop)
+            }
         }
     }
 
@@ -80,7 +84,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 
         viewHolder.button.setOnClickListener {
             viewHolder.prefs.edit().putBoolean("registered$i", true).apply()
-            if(!btn[i]){
+            if (!btn[i]) {
                 viewHolder.storeData(i)
             }
             btn[i] = true
@@ -88,10 +92,10 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 
             val activity = it.context as AppCompatActivity
 
-            val username = viewHolder.preferences.getString("userName",null)
-            val password = viewHolder.preferences.getString("password",null)
+            val username = viewHolder.preferences.getString("userName", null)
+            val password = viewHolder.preferences.getString("password", null)
 
-            if(username == null || password == null || username.isEmpty() || password.isEmpty()){
+            if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
                 activity.supportFragmentManager.commit {
                     replace<Login>(R.id.fragment_login)
                     setReorderingAllowed(true)
@@ -112,6 +116,4 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
     override fun getItemCount(): Int {
         return name.size
     }
-
-
 }

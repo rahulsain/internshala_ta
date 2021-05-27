@@ -9,8 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rahuls.ta_hiring_internshala.R
 
-class RVAdapter(private val name: ArrayList<String>, private val date: ArrayList<String>,
-                private val btn: ArrayList<Boolean>) : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
+class RVAdapter(
+    private val name: ArrayList<String>, private val date: ArrayList<String>,
+    private val btn: ArrayList<Boolean>
+) : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

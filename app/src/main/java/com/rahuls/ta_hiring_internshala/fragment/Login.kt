@@ -19,7 +19,7 @@ import com.rahuls.ta_hiring_internshala.R
 class Login : Fragment() {
 
     private lateinit var buttonLogin: Button
-    private lateinit var buttonSignUp:Button
+    private lateinit var buttonSignUp: Button
     private lateinit var lUsername: EditText
     private lateinit var lPassword: EditText
     private lateinit var preferences: SharedPreferences
@@ -36,27 +36,25 @@ class Login : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_login, container, false)
+        val view = inflater.inflate(R.layout.fragment_login, container, false)
 
-        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         lUsername = view.findViewById(R.id.lUsername)
         lPassword = view.findViewById(R.id.lPass)
         buttonLogin = view.findViewById(R.id.lBtn)
         buttonSignUp = view.findViewById(R.id.rBtn)
 
-
-
-
-        buttonLogin.setOnClickListener{
+        buttonLogin.setOnClickListener {
             val activity = it.context as AppCompatActivity
             val lUserName = lUsername.text.toString()
             val lPassWord = lPassword.text.toString()
-            val username = preferences.getString("userName",null)
-            val password = preferences.getString("password",null)
+            val username = preferences.getString("userName", null)
+            val password = preferences.getString("password", null)
             val msg: String
 
-            if(username.equals(lUserName) && password.equals(lPassWord)) {
+            if (username.equals(lUserName) && password.equals(lPassWord)) {
                 msg = "Login Successfully"
                 activity.supportFragmentManager.commit {
                     replace<Dashboard>(R.id.fragment_dashboard)
@@ -68,10 +66,10 @@ class Login : Fragment() {
                 msg = "Login Failed"
             }
 
-            Toast.makeText(activity,msg, Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
         }
 
-        buttonSignUp.setOnClickListener{
+        buttonSignUp.setOnClickListener {
             val activity = it.context as AppCompatActivity
 
             activity.supportFragmentManager.commit {
@@ -84,8 +82,4 @@ class Login : Fragment() {
         return view
     }
 
-    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(itemView, savedInstanceState)
-
-    }
 }
