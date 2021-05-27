@@ -24,12 +24,11 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 
     private val uiScope = CoroutineScope(Dispatchers.IO)
 
-    private val name = arrayOf("Android Dev W1", "Android Dev W2", "Web Dev W1",
-        "Learn Kotlin B1", "Android Dev W3", "Learn DSA")
+    private val name = arrayOf("Android Dev W1", "Android Dev W2",
+        "Web Dev W1", "Learn Kotlin B1", "Learn DSA")
 
     private val date = arrayOf("20:00 18th May, 2021", "04:00 18th May, 2021",
-        "07:00 19th May, 2021", "04:00 20th May, 2021",
-        "01:00 21th May, 2021", "10:00 30th May, 2021")
+        "07:00 19th May, 2021", "04:00 20th May, 2021", "10:00 30th May, 2021")
 
     private val btn = arrayOf(false, false, false, false, false, false)
 

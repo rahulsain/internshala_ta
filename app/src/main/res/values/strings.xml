@@ -15,6 +15,7 @@
     <string name="date">Date</string>
     <string name="apply">Apply</string>
     <string name="applied">Applied</string>
+    <string name="register">Register</string>
     <string name="splash_logo_name">SAINGame</string>
     <string name="login_name">Login</string>
     <string name="login_user">USERNAME</string>
